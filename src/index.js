@@ -1,5 +1,5 @@
 ReactDOM.render(
-  <App videos={window.exampleVideoData}/>,
+  <App />,
   document.getElementById('app')
 );
 
