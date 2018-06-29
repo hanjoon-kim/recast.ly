@@ -17,8 +17,8 @@ var searchYouTube = (options, callback) => {
     error: function(error) {
       console.log('error', error);
     }
-  })
+  });
   
-}
+};
 
 window.searchYouTube = searchYouTube;

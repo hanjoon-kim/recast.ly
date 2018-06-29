@@ -3,14 +3,49 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-       videos: window.exampleVideoData,
-       currentVideo: window.exampleVideoData[0],
-       searchYouTube: window.searchYouTube
-    };
+      option: { 
+        key: window.YOUTUBE_API_KEY,
+        query: 'dogs',
+        max: 5
+      },
+      videos: exampleVideoData,
+      currentVideo: exampleVideoData[0]
+    },
+    this.updateInput = this.updateInput.bind(this);
+
   }
-  
+
+  updateInput(event) {
+    var self = this;
+    //Grab our old option in the current state
+    var newOption = this.state.option;
+    //Update the query property of the old option to make it a new state
+    newOption.query = event.target.value;
+    //Stick back the new option back into state
+    this.setState({option: newOption});
+    searchYouTube(this.state.option, self.getVideo.bind(this));
+  } 
+
   handleClick(video) {
     this.setState({currentVideo: video});
+  }
+
+  // handleSearch(text) {
+  //   console.log($('.input').val());
+  // }
+  
+  
+
+  componentDidMount() {
+    var self = this;
+    searchYouTube(this.state.option, self.getVideo.bind(this));
+  }
+
+  getVideo(videos) {
+    this.setState({
+      videos: videos,
+      currentVideo: videos[0]
+    });
   }
   
   render() {
@@ -18,7 +53,7 @@ class App extends React.Component {
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <Search />
+            <Search updateInput={this.updateInput} />
           </div>
         </nav>
         <div className="row">
