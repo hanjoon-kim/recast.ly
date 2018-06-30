@@ -12,7 +12,6 @@ class App extends React.Component {
       currentVideo: exampleVideoData[0]
     },
     this.updateInput = this.updateInput.bind(this);
-
   }
 
   updateInput(event) {
@@ -29,12 +28,6 @@ class App extends React.Component {
   handleClick(video) {
     this.setState({currentVideo: video});
   }
-
-  // handleSearch(text) {
-  //   console.log($('.input').val());
-  // }
-  
-  
 
   componentDidMount() {
     var self = this;
@@ -70,8 +63,5 @@ class App extends React.Component {
   }
 }
 
-// In the ES6 spec, files are "modules" and do not share a top-level scope
-// `var` declarations will only exist globally where explicitly defined
-//   <div><h5><em>videoPlayer</em>  </h5></div>
 window.App = App;
 
